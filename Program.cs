@@ -42,5 +42,63 @@ class Program
             Console.WriteLine(computer);
         }
         Console.WriteLine();
+        Console.WriteLine("Добавляем новый компьютер перед ID=3");
+        Computer newComputer = new Computer(1, "Sumsung", 10, 2000, 4.4);
 
-        
+        int indexToInsert = computers.FindIndex(c => c.ID == 3);
+
+        if (indexToInsert != -1)
+        {
+            computers.Insert(indexToInsert, newComputer);
+            Console.WriteLine("Новый компьютер добавлен успешно");
+        }
+        else
+        {
+            Console.WriteLine("Компьютер с ID=3 не найден");
+        }
+        Console.WriteLine();
+
+        Console.WriteLine("Все компьютеры после добавления нового:");
+        foreach (var computer in computers)
+        {
+            Console.WriteLine(computer);
+        }
+        Console.WriteLine();
+
+        Console.WriteLine("Удаляем компьютер с ID=3");
+        computers.RemoveAll(c => c.ID == 3);
+        Console.WriteLine("Компьютер с ID=3 удален");
+        Console.WriteLine();
+
+        Console.WriteLine("Все компьютеры после удаления:");
+        foreach (var computer in computers)
+        {
+            Console.WriteLine(computer);
+        }
+        Console.WriteLine();
+
+        Console.WriteLine("Поиск всех компьютеров Assus:");
+        List<Computer> compAssus = computers.Where(c => c.Brand == "Assus").ToList();
+
+        if (compAssus.Any())
+        {
+            foreach (var computer in compAssus)
+            {
+                Console.WriteLine(computer);
+            }
+        }
+        else
+        {
+            Console.WriteLine("Компьютеры марки Assus не найдены");
+        }
+        Console.WriteLine();
+
+        Console.WriteLine("Упорядоченные компьютеры по Марка и Скорость:");
+        var sortedComputers = computers.OrderBy(c => c.Brand).ThenBy(c => c.Speed).ToList();
+
+        foreach (var computer in sortedComputers)
+        {
+            Console.WriteLine(computer);
+        }
+    }
+}
